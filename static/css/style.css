@@ -378,6 +378,19 @@ body {
 
 
 
+/* Social links in footer */
+.social-links a {
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: translateY(-2px);
+}
+
+.social-links a:hover i {
+  color: var(--pink-dark) !important;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

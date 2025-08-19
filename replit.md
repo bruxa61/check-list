@@ -7,6 +7,10 @@ Check-List é uma aplicação web baseada em Flask que permite aos usuários cri
 Preferred communication style: Simple, everyday language.
 Language: Portuguese (Brazilian) - all UI text and interface must be in Portuguese.
 Features requested: Image support for checklist items, responsive mobile design.
+Nome alterado de "Listas Fofinhas" para "Check-List".
+Funcionalidade de imagens removida devido a erros.
+Ícone personalizado adicionado à navbar.
+Footer atualizado para "Feito com café" e cores verde ajustadas para tom menos vibrante.
 
 # System Architecture
 

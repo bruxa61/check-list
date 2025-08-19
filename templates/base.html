@@ -22,7 +22,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold text-gradient" href="{{ url_for('index') }}">
-                <img src="{{ url_for('static', filename='images/icon.png') }}" alt="Check-List" class="me-2" style="width: 24px; height: 24px;">Check-List
+                <a href="https://github.com/bruxa61" target="_blank" class="text-decoration-none">
+                    <img src="{{ url_for('static', filename='images/icon.png') }}" alt="GitHub" class="me-2" style="width: 32px; height: 32px; cursor: pointer;">
+                </a>Check-List
             </a>
             
             {% if current_user.is_authenticated %}
@@ -70,11 +72,21 @@
     <!-- Footer -->
     <footer class="bg-light mt-5 py-4">
         <div class="container text-center">
-            <p class="text-muted mb-0">
+            <p class="text-muted mb-2">
                 <i class="fas fa-coffee text-pink me-1"></i>
                 Feito com café
                 <i class="fas fa-coffee text-pink ms-1"></i>
             </p>
+            <div class="social-links">
+                <a href="https://github.com/bruxa61" target="_blank" class="text-decoration-none me-3">
+                    <i class="fab fa-github text-dark" style="font-size: 1.2rem;"></i>
+                    <span class="text-muted">GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/rafaela-botelho-76a4a72b0" target="_blank" class="text-decoration-none">
+                    <i class="fab fa-linkedin text-primary" style="font-size: 1.2rem;"></i>
+                    <span class="text-muted">LinkedIn</span>
+                </a>
+            </div>
         </div>
     </footer>
 
