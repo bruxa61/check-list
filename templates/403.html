@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Access Denied - Cute Checklists{% endblock %}
+{% block title %}Acesso Negado - Listas Fofinhas{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -9,19 +9,19 @@
             <div class="error-page py-5">
                 <i class="fas fa-lock fa-5x text-muted mb-4"></i>
                 <h1 class="display-4 fw-bold text-gradient mb-3">Oops!</h1>
-                <h4 class="text-muted mb-4">Access Denied</h4>
+                <h4 class="text-muted mb-4">Acesso Negado</h4>
                 <p class="lead text-muted mb-4">
-                    It looks like you don't have permission to access this page. 
-                    Please try logging in again.
+                    Parece que você não tem permissão para acessar esta página. 
+                    Tente fazer login novamente.
                 </p>
                 <div class="d-grid gap-2 d-md-block">
                     <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg cute-btn me-2">
                         <i class="fas fa-home me-2"></i>
-                        Go Home
+                        Ir para Casa
                     </a>
                     <a href="{{ url_for('replit_auth.login') }}" class="btn btn-outline-primary btn-lg">
                         <i class="fas fa-sign-in-alt me-2"></i>
-                        Try Again
+                        Tentar Novamente
                     </a>
                 </div>
             </div>

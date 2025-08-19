@@ -33,7 +33,7 @@ def create_checklist():
     color = request.form.get('color', 'pink')
     
     if not name:
-        flash('Please enter a checklist name!', 'error')
+        flash('Por favor, digite um nome para a lista!', 'error')
         return redirect(url_for('home'))
     
     # Validate color is in allowed pastel colors
@@ -41,16 +41,12 @@ def create_checklist():
     if color not in allowed_colors:
         color = 'pink'
     
-    new_checklist = Checklist(
-        name=name,
-        color=color,
-        user_id=current_user.id
-    )
+    new_checklist = Checklist(name=name, color=color, user_id=current_user.id)
     
     db.session.add(new_checklist)
     db.session.commit()
     
-    flash('Checklist created successfully! ✨', 'success')
+    flash('Lista criada com sucesso! ✨', 'success')
     return redirect(url_for('home'))
 
 @app.route('/delete_checklist/<int:checklist_id>', methods=['POST'])
@@ -60,13 +56,13 @@ def delete_checklist(checklist_id):
     checklist = Checklist.query.filter_by(id=checklist_id, user_id=current_user.id).first()
     
     if not checklist:
-        flash('Checklist not found!', 'error')
+        flash('Lista não encontrada!', 'error')
         return redirect(url_for('home'))
     
     db.session.delete(checklist)
     db.session.commit()
     
-    flash('Checklist deleted successfully! 🗑️', 'success')
+    flash('Lista excluída com sucesso! 🗑️', 'success')
     return redirect(url_for('home'))
 
 @app.route('/add_item/<int:checklist_id>', methods=['POST'])
@@ -76,24 +72,22 @@ def add_item(checklist_id):
     checklist = Checklist.query.filter_by(id=checklist_id, user_id=current_user.id).first()
     
     if not checklist:
-        flash('Checklist not found!', 'error')
+        flash('Lista não encontrada!', 'error')
         return redirect(url_for('home'))
     
     item_text = request.form.get('item_text', '').strip()
+    image_url = request.form.get('image_url', '').strip()
     
     if not item_text:
-        flash('Please enter item text!', 'error')
+        flash('Por favor, digite o texto do item!', 'error')
         return redirect(url_for('home'))
     
-    new_item = ChecklistItem(
-        text=item_text,
-        checklist_id=checklist_id
-    )
+    new_item = ChecklistItem(text=item_text, checklist_id=checklist_id, image_url=image_url if image_url else None)
     
     db.session.add(new_item)
     db.session.commit()
     
-    flash('Item added successfully! ✅', 'success')
+    flash('Item adicionado com sucesso! ✅', 'success')
     return redirect(url_for('home'))
 
 @app.route('/toggle_item/<int:item_id>', methods=['POST'])
@@ -106,7 +100,7 @@ def toggle_item(item_id):
     ).first()
     
     if not item:
-        flash('Item not found!', 'error')
+        flash('Item não encontrado!', 'error')
         return redirect(url_for('home'))
     
     item.completed = not item.completed
@@ -124,13 +118,13 @@ def delete_item(item_id):
     ).first()
     
     if not item:
-        flash('Item not found!', 'error')
+        flash('Item não encontrado!', 'error')
         return redirect(url_for('home'))
     
     db.session.delete(item)
     db.session.commit()
     
-    flash('Item deleted successfully! 🗑️', 'success')
+    flash('Item excluído com sucesso! 🗑️', 'success')
     return redirect(url_for('home'))
 
 @app.route('/edit_checklist/<int:checklist_id>', methods=['POST'])
@@ -140,14 +134,14 @@ def edit_checklist(checklist_id):
     checklist = Checklist.query.filter_by(id=checklist_id, user_id=current_user.id).first()
     
     if not checklist:
-        flash('Checklist not found!', 'error')
+        flash('Lista não encontrada!', 'error')
         return redirect(url_for('home'))
     
     new_name = request.form.get('name', '').strip()
     new_color = request.form.get('color', checklist.color)
     
     if not new_name:
-        flash('Please enter a checklist name!', 'error')
+        flash('Por favor, digite um nome para a lista!', 'error')
         return redirect(url_for('home'))
     
     # Validate color
@@ -159,5 +153,5 @@ def edit_checklist(checklist_id):
     checklist.color = new_color
     db.session.commit()
     
-    flash('Checklist updated successfully! ✨', 'success')
+    flash('Lista atualizada com sucesso! ✨', 'success')
     return redirect(url_for('home'))

@@ -376,6 +376,26 @@ body {
   outline-offset: 2px;
 }
 
+/* Item images */
+.item-image {
+  transition: transform 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-image:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Mobile responsiveness for images */
+@media (max-width: 576px) {
+  .item-image {
+    max-width: 80px;
+    max-height: 60px;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

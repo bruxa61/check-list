@@ -1,10 +1,12 @@
 # Overview
 
-Cute Checklists is a Flask-based web application that allows users to create and manage personal checklists with pastel color themes. The application features user authentication through Replit's OAuth system, enabling users to create, organize, and track their tasks in a visually appealing interface. Users can create multiple checklists with different color themes (pink, purple, blue, green, yellow) and manage checklist items with completion tracking.
+Listas Fofinhas é uma aplicação web baseada em Flask que permite aos usuários criar e gerenciar listas pessoais com temas de cores pastéis. A aplicação apresenta autenticação de usuário através do sistema OAuth do Replit, permitindo aos usuários criar, organizar e acompanhar suas tarefas em uma interface visualmente atraente. Os usuários podem criar múltiplas listas com diferentes temas de cores (rosa, roxo, azul, verde, amarelo) e gerenciar itens da lista com acompanhamento de conclusão. Inclui funcionalidade de imagens nos itens das listas e interface totalmente em português brasileiro.
 
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
+Language: Portuguese (Brazilian) - all UI text and interface must be in Portuguese.
+Features requested: Image support for checklist items, responsive mobile design.
 
 # System Architecture
 

@@ -45,6 +45,11 @@ class Checklist(db.Model):
     
     # Relationship to checklist items
     items = db.relationship('ChecklistItem', backref='checklist', lazy=True, cascade='all, delete-orphan')
+    
+    def __init__(self, name, color='pink', user_id=None):
+        self.name = name
+        self.color = color
+        self.user_id = user_id
 
 class ChecklistItem(db.Model):
     __tablename__ = 'checklist_items'
@@ -52,5 +57,12 @@ class ChecklistItem(db.Model):
     text = db.Column(db.String(500), nullable=False)
     completed = db.Column(db.Boolean, default=False, nullable=False)
     checklist_id = db.Column(db.Integer, db.ForeignKey('checklists.id'), nullable=False)
+    image_url = db.Column(db.String(500), nullable=True)  # Para imagens dos itens
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+    
+    def __init__(self, text, checklist_id, completed=False, image_url=None):
+        self.text = text
+        self.checklist_id = checklist_id
+        self.completed = completed
+        self.image_url = image_url
