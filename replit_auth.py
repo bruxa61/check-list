@@ -64,9 +64,11 @@ class UserSessionStorage(BaseStorage):
 
 def make_replit_blueprint():
     try:
-        repl_id = os.environ['REPL_ID']
+        repl_id = os.environ.get('REPL_ID') or os.environ.get('CLIENT_ID')
+        if not repl_id:
+            raise SystemExit("REPL_ID or CLIENT_ID environment variable must be set")
     except KeyError:
-        raise SystemExit("the REPL_ID environment variable must be set")
+        raise SystemExit("REPL_ID or CLIENT_ID environment variable must be set")
 
     issuer_url = os.environ.get('ISSUER_URL', "https://replit.com/oidc")
 

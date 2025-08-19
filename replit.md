@@ -11,6 +11,7 @@ Nome alterado de "Listas Fofinhas" para "Check-List".
 Funcionalidade de imagens removida devido a erros.
 Ícone personalizado adicionado à navbar.
 Footer atualizado para "Feito com café" e cores verde ajustadas para tom menos vibrante.
+Aplicação preparada para deploy externo com requirements.txt, Procfile e variáveis de ambiente flexíveis.
 
 # System Architecture
 
