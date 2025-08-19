@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Minhas Listas - Listas Fofinhas{% endblock %}
+{% block title %}Minhas Listas - Check-List{% endblock %}
 
 {% block content %}
 <div class="container my-5">
@@ -60,33 +60,24 @@
                     <div class="checklist-items mb-3">
                         {% if checklist.items %}
                             {% for item in checklist.items[:5] %}
-                            <div class="checklist-item mb-2">
-                                <div class="d-flex align-items-center">
-                                    <form method="POST" action="{{ url_for('toggle_item', item_id=item.id) }}" class="d-inline me-2">
-                                        <button type="submit" class="btn btn-sm p-0 border-0 bg-transparent">
-                                            {% if item.completed %}
-                                                <i class="fas fa-check-circle text-success"></i>
-                                            {% else %}
-                                                <i class="far fa-circle text-muted"></i>
-                                            {% endif %}
-                                        </button>
-                                    </form>
-                                    <div class="flex-grow-1">
-                                        <span class="text-truncate {{ 'text-decoration-line-through text-muted' if item.completed else '' }}">
-                                            {{ item.text }}
-                                        </span>
-                                        {% if item.image_url %}
-                                        <div class="mt-2">
-                                            <img src="{{ item.image_url }}" alt="Item image" class="item-image rounded" style="max-width: 100px; max-height: 80px; object-fit: cover;">
-                                        </div>
+                            <div class="checklist-item d-flex align-items-center mb-2">
+                                <form method="POST" action="{{ url_for('toggle_item', item_id=item.id) }}" class="d-inline me-2">
+                                    <button type="submit" class="btn btn-sm p-0 border-0 bg-transparent">
+                                        {% if item.completed %}
+                                            <i class="fas fa-check-circle text-success"></i>
+                                        {% else %}
+                                            <i class="far fa-circle text-muted"></i>
                                         {% endif %}
-                                    </div>
-                                    <form method="POST" action="{{ url_for('delete_item', item_id=item.id) }}" class="d-inline ms-2">
-                                        <button type="submit" class="btn btn-sm p-0 border-0 bg-transparent text-danger" onclick="return confirm('Excluir este item?')">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </form>
-                                </div>
+                                    </button>
+                                </form>
+                                <span class="flex-grow-1 text-truncate {{ 'text-decoration-line-through text-muted' if item.completed else '' }}">
+                                    {{ item.text }}
+                                </span>
+                                <form method="POST" action="{{ url_for('delete_item', item_id=item.id) }}" class="d-inline ms-2">
+                                    <button type="submit" class="btn btn-sm p-0 border-0 bg-transparent text-danger" onclick="return confirm('Excluir este item?')">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
                             </div>
                             {% endfor %}
                             {% if checklist.items|length > 5 %}
@@ -105,18 +96,11 @@
 
                     <!-- Add Item Form -->
                     <form method="POST" action="{{ url_for('add_item', checklist_id=checklist.id) }}" class="add-item-form">
-                        <div class="input-group mb-2">
+                        <div class="input-group">
                             <input type="text" name="item_text" class="form-control form-control-sm cute-input" placeholder="Adicionar novo item..." required>
-                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="collapse" data-bs-target="#imageInput{{ checklist.id }}">
-                                <i class="fas fa-image"></i>
-                            </button>
                             <button type="submit" class="btn btn-outline-secondary btn-sm">
                                 <i class="fas fa-plus"></i>
                             </button>
-                        </div>
-                        <div class="collapse" id="imageInput{{ checklist.id }}">
-                            <input type="url" name="image_url" class="form-control form-control-sm cute-input" placeholder="URL da imagem (opcional)">
-                            <small class="text-muted">Cole a URL de uma imagem para adicionar ao item</small>
                         </div>
                     </form>
 

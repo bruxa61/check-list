@@ -6,12 +6,12 @@
   --pink: #FFB6C1;
   --purple: #DDA0DD;
   --blue: #ADD8E6;
-  --green: #98FB98;
+  --green: #d4e6c7;
   --yellow: #FFFFE0;
   --pink-dark: #FF91A4;
   --purple-dark: #D8BFD8;
   --blue-dark: #87CEEB;
-  --green-dark: #90EE90;
+  --green-dark: #b8d4a3;
   --yellow-dark: #FFFACD;
 }
 
@@ -376,25 +376,7 @@ body {
   outline-offset: 2px;
 }
 
-/* Item images */
-.item-image {
-  transition: transform 0.3s ease;
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
 
-.item-image:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
-/* Mobile responsiveness for images */
-@media (max-width: 576px) {
-  .item-image {
-    max-width: 80px;
-    max-height: 60px;
-  }
-}
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {

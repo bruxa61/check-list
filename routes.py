@@ -76,13 +76,12 @@ def add_item(checklist_id):
         return redirect(url_for('home'))
     
     item_text = request.form.get('item_text', '').strip()
-    image_url = request.form.get('image_url', '').strip()
     
     if not item_text:
         flash('Por favor, digite o texto do item!', 'error')
         return redirect(url_for('home'))
     
-    new_item = ChecklistItem(text=item_text, checklist_id=checklist_id, image_url=image_url if image_url else None)
+    new_item = ChecklistItem(text=item_text, checklist_id=checklist_id)
     
     db.session.add(new_item)
     db.session.commit()

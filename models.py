@@ -61,8 +61,7 @@ class ChecklistItem(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     
-    def __init__(self, text, checklist_id, completed=False, image_url=None):
+    def __init__(self, text, checklist_id, completed=False):
         self.text = text
         self.checklist_id = checklist_id
         self.completed = completed
-        self.image_url = image_url

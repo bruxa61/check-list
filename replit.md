@@ -1,6 +1,6 @@
 # Overview
 
-Listas Fofinhas é uma aplicação web baseada em Flask que permite aos usuários criar e gerenciar listas pessoais com temas de cores pastéis. A aplicação apresenta autenticação de usuário através do sistema OAuth do Replit, permitindo aos usuários criar, organizar e acompanhar suas tarefas em uma interface visualmente atraente. Os usuários podem criar múltiplas listas com diferentes temas de cores (rosa, roxo, azul, verde, amarelo) e gerenciar itens da lista com acompanhamento de conclusão. Inclui funcionalidade de imagens nos itens das listas e interface totalmente em português brasileiro.
+Check-List é uma aplicação web baseada em Flask que permite aos usuários criar e gerenciar listas pessoais com temas de cores pastéis. A aplicação apresenta autenticação de usuário através do sistema OAuth do Replit, permitindo aos usuários criar, organizar e acompanhar suas tarefas em uma interface visualmente atraente. Os usuários podem criar múltiplas listas com diferentes temas de cores (rosa, roxo, azul, verde, amarelo) e gerenciar itens da lista com acompanhamento de conclusão. Interface totalmente em português brasileiro com design responsivo para dispositivos móveis.
 
 # User Preferences
 
