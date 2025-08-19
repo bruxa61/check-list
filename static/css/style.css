@@ -1,0 +1,396 @@
+/* Import cute font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+
+/* Root variables for pastel colors */
+:root {
+  --pink: #FFB6C1;
+  --purple: #DDA0DD;
+  --blue: #ADD8E6;
+  --green: #98FB98;
+  --yellow: #FFFFE0;
+  --pink-dark: #FF91A4;
+  --purple-dark: #D8BFD8;
+  --blue-dark: #87CEEB;
+  --green-dark: #90EE90;
+  --yellow-dark: #FFFACD;
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(45deg, #FF91A4, #DDA0DD, #87CEEB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Color utilities */
+.text-pink { color: var(--pink-dark) !important; }
+.text-purple { color: var(--purple-dark) !important; }
+.text-blue { color: var(--blue-dark) !important; }
+.text-green { color: var(--green-dark) !important; }
+.text-yellow { color: #DAA520 !important; }
+
+.bg-pink { background-color: var(--pink) !important; }
+.bg-purple { background-color: var(--purple) !important; }
+.bg-blue { background-color: var(--blue) !important; }
+.bg-green { background-color: var(--green) !important; }
+.bg-yellow { background-color: var(--yellow) !important; }
+
+/* Navigation */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--pink);
+}
+
+/* Buttons */
+.cute-btn {
+  border-radius: 25px !important;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 4px 15px rgba(255, 145, 164, 0.3);
+  border: none;
+  background: linear-gradient(45deg, var(--pink), var(--purple));
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.cute-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 145, 164, 0.4);
+  color: white;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, var(--pink), var(--purple));
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, var(--pink-dark), var(--purple-dark));
+  border: none;
+}
+
+/* Forms */
+.cute-input {
+  border-radius: 15px !important;
+  border: 2px solid #f0f0f0;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.cute-input:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 0.2rem rgba(255, 145, 164, 0.25);
+}
+
+/* Hero section */
+.hero-section {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  padding: 5rem 0;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  animation: fadeInUp 1s ease;
+}
+
+/* Feature cards */
+.feature-card {
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  height: 100%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card i {
+  opacity: 0.9;
+}
+
+/* Demo checklists */
+.demo-checklist {
+  padding: 1.5rem;
+  border-radius: 15px;
+  color: #333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.demo-item {
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.demo-item.completed {
+  opacity: 0.7;
+  text-decoration: line-through;
+}
+
+/* Checklist cards */
+.checklist-card {
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+  border: none;
+  color: #333;
+}
+
+.checklist-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.checklist-header h5 {
+  color: #333;
+}
+
+.checklist-item {
+  padding: 0.25rem 0;
+  transition: all 0.3s ease;
+}
+
+.checklist-item:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.add-item-form .form-control {
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.add-item-form .form-control:focus {
+  border-color: rgba(255, 255, 255, 1);
+  background-color: white;
+  box-shadow: none;
+}
+
+/* Progress bar */
+.cute-progress {
+  height: 8px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.cute-progress .progress-bar {
+  background: linear-gradient(45deg, var(--pink-dark), var(--purple-dark));
+  border-radius: 10px;
+}
+
+/* Color picker */
+.color-options {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.color-option {
+  cursor: pointer;
+  display: block;
+}
+
+.color-option input[type="radio"] {
+  display: none;
+}
+
+.color-circle {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.color-option input[type="radio"]:checked + .color-circle {
+  border-color: #333;
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.color-option:hover .color-circle {
+  transform: scale(1.05);
+}
+
+/* Modals */
+.cute-modal {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.cute-modal .modal-header {
+  background: linear-gradient(135deg, #f8f9ff, #ffffff);
+  border-radius: 20px 20px 0 0;
+}
+
+/* Alerts */
+.cute-alert {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Empty state */
+.empty-state {
+  padding: 3rem;
+  background: linear-gradient(135deg, #f8f9ff, #ffffff);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Dropdown menus */
+.dropdown-menu {
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.dropdown-item {
+  border-radius: 8px;
+  margin: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--pink);
+  color: white;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3rem 0;
+  }
+  
+  .feature-card {
+    margin-bottom: 1rem;
+  }
+  
+  .checklist-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .color-options {
+    justify-content: center;
+  }
+  
+  .color-circle {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .checklist-card {
+    padding: 1rem;
+  }
+  
+  .cute-btn {
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: all 0.3s ease;
+}
+
+/* Focus states for accessibility */
+.btn:focus,
+.form-control:focus,
+.color-option:focus .color-circle {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, var(--pink), var(--purple));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, var(--pink-dark), var(--purple-dark));
+}

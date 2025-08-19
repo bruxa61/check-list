@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Cute Checklists{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="hero-content">
+                    <h1 class="display-4 fw-bold text-gradient mb-4">
+                        Welcome to Cute Checklists! 
+                        <i class="fas fa-sparkles text-yellow"></i>
+                    </h1>
+                    <p class="lead text-muted mb-5">
+                        Organize your tasks in the most adorable way possible! Create beautiful checklists with pastel colors and keep track of everything that matters to you.
+                    </p>
+                    
+                    <!-- Features Grid -->
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-4">
+                            <div class="feature-card bg-pink">
+                                <i class="fas fa-palette fa-3x mb-3"></i>
+                                <h5>Pastel Colors</h5>
+                                <p class="small">Choose from beautiful pastel themes for each checklist</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card bg-purple">
+                                <i class="fas fa-check-circle fa-3x mb-3"></i>
+                                <h5>Easy Organization</h5>
+                                <p class="small">Create, organize, and track your tasks effortlessly</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card bg-blue">
+                                <i class="fas fa-mobile-alt fa-3x mb-3"></i>
+                                <h5>Responsive</h5>
+                                <p class="small">Works perfectly on all your devices</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Login Button -->
+                    <div class="d-grid gap-2 d-md-block">
+                        <a href="{{ url_for('replit_auth.login') }}" class="btn btn-primary btn-lg px-5 py-3 cute-btn">
+                            <i class="fas fa-sign-in-alt me-2"></i>
+                            Get Started
+                        </a>
+                    </div>
+                    
+                    <p class="small text-muted mt-3">
+                        <i class="fas fa-lock me-1"></i>
+                        Secure login powered by authentication
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Demo Section -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h2 class="text-center mb-5 fw-bold text-gradient">
+                <i class="fas fa-star me-2"></i>
+                What makes us special?
+            </h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="demo-checklist bg-green">
+                        <h6 class="fw-bold mb-3">
+                            <i class="fas fa-shopping-bag me-2"></i>
+                            Shopping List
+                        </h6>
+                        <div class="demo-item completed">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Fresh vegetables
+                        </div>
+                        <div class="demo-item">
+                            <i class="far fa-circle me-2"></i>
+                            Organic fruits
+                        </div>
+                        <div class="demo-item">
+                            <i class="far fa-circle me-2"></i>
+                            Whole grain bread
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="demo-checklist bg-yellow">
+                        <h6 class="fw-bold mb-3">
+                            <i class="fas fa-heart me-2"></i>
+                            Self Care
+                        </h6>
+                        <div class="demo-item completed">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Morning meditation
+                        </div>
+                        <div class="demo-item completed">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Drink 8 glasses of water
+                        </div>
+                        <div class="demo-item">
+                            <i class="far fa-circle me-2"></i>
+                            Evening skincare routine
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

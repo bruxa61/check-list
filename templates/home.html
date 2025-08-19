@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}My Checklists - Cute Checklists{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="fw-bold text-gradient mb-2">
+                <i class="fas fa-heart me-2"></i>
+                Hello, {{ current_user.first_name or 'Beautiful' }}!
+            </h1>
+            <p class="text-muted">Let's make today productive and cute! ✨</p>
+        </div>
+    </div>
+
+    <!-- New Checklist Button -->
+    <div class="row mb-4">
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-lg cute-btn" data-bs-toggle="modal" data-bs-target="#newChecklistModal">
+                <i class="fas fa-plus me-2"></i>
+                New Checklist
+            </button>
+        </div>
+    </div>
+
+    <!-- Checklists Grid -->
+    <div class="row g-4">
+        {% if checklists %}
+            {% for checklist in checklists %}
+            <div class="col-lg-4 col-md-6">
+                <div class="checklist-card bg-{{ checklist.color }}">
+                    <!-- Card Header -->
+                    <div class="checklist-header d-flex justify-content-between align-items-start mb-3">
+                        <h5 class="fw-bold mb-0 text-truncate me-2">{{ checklist.name }}</h5>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                <li>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editChecklistModal{{ checklist.id }}">
+                                        <i class="fas fa-edit me-2"></i>Edit
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form method="POST" action="{{ url_for('delete_checklist', checklist_id=checklist.id) }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this checklist? This action cannot be undone.')">
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            <i class="fas fa-trash me-2"></i>Delete
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Items List -->
+                    <div class="checklist-items mb-3">
+                        {% if checklist.items %}
+                            {% for item in checklist.items[:5] %}
+                            <div class="checklist-item d-flex align-items-center mb-2">
+                                <form method="POST" action="{{ url_for('toggle_item', item_id=item.id) }}" class="d-inline me-2">
+                                    <button type="submit" class="btn btn-sm p-0 border-0 bg-transparent">
+                                        {% if item.completed %}
+                                            <i class="fas fa-check-circle text-success"></i>
+                                        {% else %}
+                                            <i class="far fa-circle text-muted"></i>
+                                        {% endif %}
+                                    </button>
+                                </form>
+                                <span class="flex-grow-1 text-truncate {{ 'text-decoration-line-through text-muted' if item.completed else '' }}">
+                                    {{ item.text }}
+                                </span>
+                                <form method="POST" action="{{ url_for('delete_item', item_id=item.id) }}" class="d-inline ms-2">
+                                    <button type="submit" class="btn btn-sm p-0 border-0 bg-transparent text-danger" onclick="return confirm('Delete this item?')">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            {% endfor %}
+                            {% if checklist.items|length > 5 %}
+                            <div class="text-muted small">
+                                <i class="fas fa-plus me-1"></i>
+                                {{ checklist.items|length - 5 }} more items...
+                            </div>
+                            {% endif %}
+                        {% else %}
+                        <div class="text-muted text-center py-3">
+                            <i class="fas fa-plus-circle me-2"></i>
+                            No items yet
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Add Item Form -->
+                    <form method="POST" action="{{ url_for('add_item', checklist_id=checklist.id) }}" class="add-item-form">
+                        <div class="input-group">
+                            <input type="text" name="item_text" class="form-control form-control-sm cute-input" placeholder="Add new item..." required>
+                            <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Progress Indicator -->
+                    {% set completed_count = checklist.items | selectattr('completed') | list | length %}
+                    {% set total_count = checklist.items | length %}
+                    {% if total_count > 0 %}
+                    <div class="progress-section mt-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <small class="text-muted">Progress</small>
+                            <small class="fw-semibold">{{ completed_count }}/{{ total_count }}</small>
+                        </div>
+                        <div class="progress cute-progress">
+                            <div class="progress-bar" style="width: {{ (completed_count / total_count * 100) | int }}%"></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Edit Checklist Modal -->
+            <div class="modal fade" id="editChecklistModal{{ checklist.id }}" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content cute-modal">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title fw-bold">
+                                <i class="fas fa-edit me-2 text-pink"></i>
+                                Edit Checklist
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form method="POST" action="{{ url_for('edit_checklist', checklist_id=checklist.id) }}">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="editName{{ checklist.id }}" class="form-label fw-semibold">Checklist Name</label>
+                                    <input type="text" class="form-control cute-input" id="editName{{ checklist.id }}" name="name" value="{{ checklist.name }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Choose Color</label>
+                                    <div class="color-options">
+                                        {% for color in ['pink', 'purple', 'blue', 'green', 'yellow'] %}
+                                        <label class="color-option">
+                                            <input type="radio" name="color" value="{{ color }}" {{ 'checked' if checklist.color == color else '' }}>
+                                            <span class="color-circle bg-{{ color }}"></span>
+                                        </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer border-0">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary cute-btn">
+                                    <i class="fas fa-save me-2"></i>Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="col-12">
+            <div class="text-center py-5">
+                <div class="empty-state">
+                    <i class="fas fa-list-ul fa-4x text-muted mb-4"></i>
+                    <h4 class="text-muted mb-3">No checklists yet</h4>
+                    <p class="text-muted mb-4">Create your first checklist to get started!</p>
+                    <button type="button" class="btn btn-primary btn-lg cute-btn" data-bs-toggle="modal" data-bs-target="#newChecklistModal">
+                        <i class="fas fa-plus me-2"></i>
+                        Create First Checklist
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- New Checklist Modal -->
+<div class="modal fade" id="newChecklistModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content cute-modal">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold">
+                    <i class="fas fa-plus me-2 text-pink"></i>
+                    Create New Checklist
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" action="{{ url_for('create_checklist') }}">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="checklistName" class="form-label fw-semibold">Checklist Name</label>
+                        <input type="text" class="form-control cute-input" id="checklistName" name="name" placeholder="Enter a cute name..." required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Choose Color</label>
+                        <div class="color-options">
+                            <label class="color-option">
+                                <input type="radio" name="color" value="pink" checked>
+                                <span class="color-circle bg-pink"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color" value="purple">
+                                <span class="color-circle bg-purple"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color" value="blue">
+                                <span class="color-circle bg-blue"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color" value="green">
+                                <span class="color-circle bg-green"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color" value="yellow">
+                                <span class="color-circle bg-yellow"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary cute-btn">
+                        <i class="fas fa-heart me-2"></i>Create Checklist
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
